@@ -1,11 +1,49 @@
-buildscript {
-    dependencies {
-        classpath("com.google.gms:google-services:4.4.0")
+plugins {
+    id("com.android.application")
+    id("com.google.gms.google-services")
+}
+
+android {
+    namespace = "com.example.languagetranslatorapp"
+    compileSdk = 34
+
+    defaultConfig {
+        applicationId = "com.example.languagetranslatorapp"
+        minSdk = 19
+        //noinspection OldTargetApi
+        targetSdk = 33
+        versionCode = 1
+        versionName = "1.0"
+        multiDexEnabled = true
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            isMinifyEnabled = false
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+        }
+    }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
 }
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
-plugins {
-    id("com.android.application") version "8.1.2" apply false
-    id("com.google.gms.google-services") version "4.4.0" apply false
 
+dependencies {
+
+    implementation("com.android.support:multidex:1.0.3")
+    implementation("androidx.appcompat:appcompat:1.6.1")
+    implementation("com.google.android.material:material:1.11.0")
+    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
+    implementation("com.google.firebase:firebase-core:21.1.1")
+    implementation("com.google.firebase:firebase-ml-natural-language:22.0.1")
+    implementation("com.google.firebase:firebase-ml-natural-language-language-id-model:20.0.8")
+    implementation("com.google.firebase:firebase-ml-natural-language-translate-model:20.0.9")
+    testImplementation("junit:junit:4.13.2")
+    androidTestImplementation("androidx.test.ext:junit:1.1.5")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 }
